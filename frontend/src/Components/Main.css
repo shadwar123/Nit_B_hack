@@ -1,0 +1,35 @@
+.navbar {
+    position: sticky;
+    top: 10px;
+    width: 100%;
+    height: 50px;
+    color: rgb(244, 237, 237);
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0);
+    align-items: center;
+    border-radius: 12px;
+    z-index: 10;
+    box-shadow: 0px 0px 5px 0px rgb(255, 255, 255);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.container {
+    margin-top: 2rem;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+
+}
+
+.box{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
