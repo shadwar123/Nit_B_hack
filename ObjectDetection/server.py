@@ -3,11 +3,12 @@ from flask import send_file
 import numpy as np
 from flask_cors import CORS
 import cv2
+from gtts import gTTS
 
 # Read the image file as binary data
-with open("ObjectDetection\dog.jpg", "rb") as file:
+# with open("ObjectDetection\dog.jpg", "rb") as file:
 
-    image_data = file.read()
+#     image_data = file.read()
 
 LABELS = open("ObjectDetection/yolo-coco/coco.names").read().strip().split("\n")
 print("[INFO] loading YOLO from disk...")
@@ -24,12 +25,18 @@ text_data = []
 def fun():
     return 'Hello World!'
 
-# Function to process an image and perform object detection
+@app.route('/get_text', methods=['GET'])
+
+def get_text_data():
+    global text_data
+    return jsonify(text_data)
+
 def process_image(image_data):
-    
-    
+    global text_data
+    try:
         # Decode the image
         received_image = cv2.imdecode(np.frombuffer(image_data, dtype=np.uint8), cv2.IMREAD_COLOR)
+
         # Process the received image
         frame = received_image
         (H, W) = frame.shape[:2]
@@ -40,18 +47,24 @@ def process_image(image_data):
         boxes = []
         confidences = []
         classIDs = []
-        centers = []        
+        centers = []
 
-        # Loop over each of the layer outputs
+                # loop over each of the layer outputs
         for output in layerOutputs:
-            # Loop over each of the detections
+                # loop over each of the detections
             for detection in output:
-                # Extract the class ID and confidence of the current object detection
+                    # extract the class ID and confidence (i.e., probability) of
+                    # the current object detection
                 scores = detection[5:]
                 classID = np.argmax(scores)
                 confidence = scores[classID]
+                    # filter out weak predictions by ensuring the detected
+                    # probability is greater than the minimum probability
                 if confidence > 0.5:
-
+                        # scale the bounding box coordinates back relative to the
+                        # size of the image, keeping in mind that YOLO actually
+                        # returns the center (x, y)-coordinates of the bounding
+                        # box followed by the boxes' width and height
                     box = detection[0:4] * np.array([W, H, W, H])
                     (centerX, centerY, width, height) = box.astype("int")
 
@@ -91,6 +104,41 @@ def process_image(image_data):
                     H_pos = "bottom "
                 texts.append(H_pos + W_pos + LABELS[classIDs[i]])
         print(texts)
+        text_data=texts
+        if texts:
+            description = ', '.join(texts)
+            tts = gTTS(description, lang='en', tld="com")
+           
+            # tts.save('static/tts.mp3')
+            # tts = AudioSegment.from_mp3("static/tts.mp3")
+            # subprocess.call(["ffplay", "-nodisp", "-autoexit", "static/tts.mp3"])
+            
+        
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+        return 'success'
+    except Exception as e:
+        return str(e), 500
+# print('hi',text1)
+
+@app.route('/process_image', methods=['POST'])
+def process_image_route():
+    
+    try:
+        # Receive the image data
+        image_data = request.data
+        text1 = process_image(image_data)
+        
+        return text1
+
+        
+    except Exception as e:
+        return str(e), 500
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
