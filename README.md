@@ -1,2 +1,2 @@
-# Nit_BH_hack
+# Nit_B_hack
 Repository
