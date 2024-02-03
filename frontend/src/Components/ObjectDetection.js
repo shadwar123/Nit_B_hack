@@ -148,9 +148,9 @@ function ObjectDetection() {
       } */}
 
       {viewButton ? (
-        <button className='button-container' onClick={handleStop}>Stop Frame</button>
+        <button className='button-container' onClick={handleStop}>StopFrame</button>
       ) : (
-        <button className='button-container' onClick={handleStart}>Capture Frame</button>
+        <button className='button-container' onClick={handleStart}>CaptureFrame</button>
       )}
       </div>
     </div>
