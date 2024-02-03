@@ -15,8 +15,7 @@ function ObjectDetection() {
     {
       command: 'start capturing',
       callback: () => {
-        handleStart();
-        
+        handleStart();        
       },
     },
     {
@@ -92,6 +91,17 @@ function ObjectDetection() {
     window.location.reload(false);
   };
 
+  const toggleStart = () => {
+    speak({ text: 'Voice Assistant Activate', lang: 'en' });
+    setstartcapture(false);
+  };
+
+  const toggleStop = () => {
+    speak({ text: 'Voice Assistant Deactivated', lang: 'en' });
+    setstartcapture(true);
+  };
+
+
   const sendFrameToServer = async (frameBlob) => {
     try {
       const response = await fetch(`${serverUrl}/process_image`, {
@@ -142,16 +152,16 @@ function ObjectDetection() {
       <button onClick={SpeechRecognition.stopListening}>Stop</button> */}
 
       <div className='obj-button'>
-      {/* {startcapture ? 
-      (<button className='button-container' onClick={SpeechRecognition.startListening}>Start</button>):
-      <button  className='button-container' onClick={SpeechRecognition.stopListening}>Stop</button>
-      } */}
+      {startcapture ? 
+      (<button className='button-container' onClick={(e)=>{ SpeechRecognition.startListening(e); toggleStart(e)}}>Start</button>):
+      <button  className='button-container'  onClick={(e)=>{ SpeechRecognition.stopListening(e); toggleStop(e)}}>Stop</button>
+      }
 
-      {viewButton ? (
-        <button className='button-container' onClick={handleStop}>Stop Frame</button>
+      {/* {viewButton ? (
+        <button className='button-container' onClick={handleStop}>StopFrame</button>
       ) : (
-        <button className='button-container' onClick={handleStart}>Capture Frame</button>
-      )}
+        <button className='button-container' onClick={handleStart}>CaptureFrame</button>
+      )} */}
       </div>
     </div>
   );
