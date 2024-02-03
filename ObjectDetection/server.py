@@ -1,29 +1,23 @@
+
 from flask import Flask, request,jsonify
 from flask import send_file
 import numpy as np
-from flask_cors import CORS
 import cv2
+from flask import Flask, render_template, Response
+from flask_cors import CORS
 from gtts import gTTS
-
-# Read the image file as binary data
-# with open("ObjectDetection\dog.jpg", "rb") as file:
-
-#     image_data = file.read()
-
-LABELS = open("ObjectDetection/yolo-coco/coco.names").read().strip().split("\n")
+# from pydub import AudioSegment
+# import imageio as iio
+LABELS = open("yolo-coco/coco.names").read().strip().split("\n")
 print("[INFO] loading YOLO from disk...")
-net = cv2.dnn.readNetFromDarknet("ObjectDetection/yolo-coco/yolov3.cfg", "yolo-coco/yolov3.weights")
+net = cv2.dnn.readNetFromDarknet("yolo-coco/yolov3.cfg", "yolo-coco/yolov3.weights")
 ln = net.getLayerNames()
 ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
 
 app = Flask(__name__)
 CORS(app)
 
-text_data = []
-
-@app.route('/')
-def fun():
-    return 'Hello World!'
+text_data=[]
 
 @app.route('/get_text', methods=['GET'])
 

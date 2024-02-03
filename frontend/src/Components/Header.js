@@ -27,12 +27,7 @@ function Header() {
     }
 
     return (
-        //   <div className="button-container">
-        //     <Link to="/text-to-speech" className="nav-button">Enable Voice Command</Link>
-        //     <Link to="/navigation" className="nav-button" onClick={navigationClick}>Navigation</Link>
-        //     <Link to="/object-detection" className="nav-button"  onClick={objectDetectionClick}>Object Detection</Link>
-        //     <Link to="/speech-to-text" className="nav-button" onClick={Speechtotext}>Speech To Text</Link>
-        //   </div>
+
         <div className="button-container">
             <div className="button-pair">
                 <Link to="/sos-message" className="nav-button" style={{ fontSize: '24px' }} onClick={SosMes}>SOS Messages&nbsp;&nbsp;&nbsp;&nbsp;</Link>

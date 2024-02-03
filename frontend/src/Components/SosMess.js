@@ -2,7 +2,9 @@ import React from 'react'
 
 function SosMess() {
   return (
-    <div>Sos-Message</div>
+    <div>
+      <h2>Sos-Message</h2>
+    </div>
   )
 }
 

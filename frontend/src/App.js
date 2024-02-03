@@ -14,7 +14,8 @@ const App = () => {
     <div className="app-container">
 
       <nav className="navbar">
-        <div className="navbar-title">Blind Person Nav</div>
+      <div className="navbar-title" style={{ fontWeight: 'bold' }}>Blind Assistant</div>
+
       </nav>
 
       <Header />

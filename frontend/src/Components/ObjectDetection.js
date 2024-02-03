@@ -1,28 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-
+import './ObjectDetection.css'
 function ObjectDetection() {
   const [videoStream, setVideoStream] = useState(null);
   const [capture, setCapture] = useState(true);
   const [viewButton, setViewButton] = useState(false);
+  const [startcapture , setstartcapture] = useState(true);
   const { speak } = useSpeechSynthesis();
   const videoRef = useRef();
   const serverUrl = 'http://127.0.0.1:5000';
   let bool = false;
-
-  const Welcome = 'Welcome to Object Detection'
-  useEffect(() => {
-    const Welcometext = async () => {
-      speak({ text: Welcome, lang: 'en' });
-    }
-    });
-
   const commands = [
     {
       command: 'start capturing',
       callback: () => {
         handleStart();
+        
       },
     },
     {
@@ -31,6 +25,7 @@ function ObjectDetection() {
         handleStop();
       },
     },
+    
   ];
 
   useSpeechRecognition({ commands });
@@ -50,6 +45,7 @@ function ObjectDetection() {
   }, []);
 
   const captureFrame = async () => {
+
     if (videoRef.current && videoStream) {
       const canvas = document.createElement('canvas');
       canvas.width = videoRef.current.videoWidth;
@@ -65,6 +61,14 @@ function ObjectDetection() {
   let intervalId = null;
 
   const continuousCapture = () => {
+    const commands = [
+      {
+        command: 'stop capturing',
+        callback: () => {
+          handleStop();
+        },
+      },
+    ];
     console.log('event11', capture);
     clearInterval(intervalId);
     intervalId = setInterval(() => {
@@ -73,12 +77,15 @@ function ObjectDetection() {
   };
 
   const handleStart = () => {
+    speak({ text: 'Start frame capturing', lang: 'en' });
     setViewButton(true);
     setCapture(true);
     continuousCapture();
+    SpeechRecognition.startListening({ continuous: true });
   };
 
   const handleStop = () => {
+    speak({ text: 'Stop Frame Capturing', lang: 'en' });
     setViewButton(false);
     setCapture(false);
     clearInterval(intervalId);
@@ -113,7 +120,7 @@ function ObjectDetection() {
 
   const fetchTextData = async () => {
     try {
-      const response = await fetch(`${serverUrl}/process_image`);
+      const response = await fetch(`${serverUrl}/get_text`);
       if (response.ok) {
         const textData = await response.json();
         return textData;
@@ -129,16 +136,23 @@ function ObjectDetection() {
 
   return (
     <div className="App">
-      <h1>Camera App</h1>
+      <h2>Object Detection</h2>
       <video ref={videoRef} autoPlay />
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
+      {/* <button onClick={SpeechRecognition.startListening}>Start</button>
+      <button onClick={SpeechRecognition.stopListening}>Stop</button> */}
+
+      <div className='obj-button'>
+      {/* {startcapture ? 
+      (<button className='button-container' onClick={SpeechRecognition.startListening}>Start</button>):
+      <button  className='button-container' onClick={SpeechRecognition.stopListening}>Stop</button>
+      } */}
 
       {viewButton ? (
-        <button onClick={handleStop}>Stop Frame</button>
+        <button className='button-container' onClick={handleStop}>Stop Frame</button>
       ) : (
-        <button onClick={handleStart}>Capture Frame</button>
+        <button className='button-container' onClick={handleStart}>Capture Frame</button>
       )}
+      </div>
     </div>
   );
 }
