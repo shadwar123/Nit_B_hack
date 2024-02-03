@@ -1,15 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpeechSynthesis } from 'react-speech-kit';
-import "./Main.css";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function Main() {
   const [videoStream, setVideoStream] = useState(null);
-  const [capture ,setcapture] = useState(true);
+  const [capture, setCapture] = useState(true);
   const [viewButton, setViewButton] = useState(false);
-  const {speak} = useSpeechSynthesis();
+  const { speak } = useSpeechSynthesis();
   const videoRef = useRef();
-  const serverUrl = 'http://127.0.0.1:5000'; 
-  // let bool = false;
+  const serverUrl = 'http://127.0.0.1:5000';
+  let bool = false;
+  const commands = [
+    {
+      command: 'start capturing',
+      callback: () => {
+        handleStart();
+      },
+    },
+    {
+      command: 'stop capturing',
+      callback: () => {
+        handleStop();
+      },
+    },
+  ];
+
+  useSpeechRecognition({ commands });
+
   useEffect(() => {
     const initCamera = async () => {
       try {
@@ -24,7 +41,6 @@ function Main() {
     initCamera();
   }, []);
 
-
   const captureFrame = async () => {
     if (videoRef.current && videoStream) {
       const canvas = document.createElement('canvas');
@@ -37,50 +53,29 @@ function Main() {
       sendFrameToServer(frameBlob);
     }
   };
-    // const continousCapture = () => {
-  //   console.log("event11",bool)
-  //   if (bool) {
-  //     console.log("event1111",bool)
-  //     captureFrame();
-  //     setTimeout(continousCapture, 5000); 
-  //   }
-  //   
-  // }
-
-  // useEffect(()=>{
-  //   const interval = setInterval(()=>{
-  //     if(capture){
-  //       captureFrame()
-  //     }
-  //   },4000);
-  //   return () => clearInterval(interval);
-  // },[])
 
   let intervalId = null;
 
-  const continousCapture = () => {
-    console.log("event11",capture)
-    clearInterval(intervalId); 
+  const continuousCapture = () => {
+    console.log('event11', capture);
+    clearInterval(intervalId);
     intervalId = setInterval(() => {
       captureFrame();
-    }, 2000);
-  }
-
+    }, 5000);
+  };
 
   const handleStart = () => {
     setViewButton(true);
-    setcapture(true);
-    //   console.log("event11",capture)
-    continousCapture();
-  }
+    setCapture(true);
+    continuousCapture();
+  };
 
   const handleStop = () => {
     setViewButton(false);
-    setcapture(false);
-    clearInterval(intervalId); 
-    //   console.log("event11",bool)
+    setCapture(false);
+    clearInterval(intervalId);
     window.location.reload(false);
-  }
+  };
 
   const sendFrameToServer = async (frameBlob) => {
     try {
@@ -91,17 +86,16 @@ function Main() {
           'Content-Type': 'image/jpeg',
         },
       });
+      console.log(response.json());
 
-      if (!response.ok) {
+      if (!response) {
         console.error('Failed to send frame to the server:', response.statusText);
       } else {
         const textData = await fetchTextData();
         if (textData.length > 0) {
-
-          const description = textData.join(', '); 
-          console.log("description",description)
-            speak({text:description, lang: 'en'})
-
+          const description = textData.join(', ');
+          console.log('description', description);
+          speak({ text: description, lang: 'en' });
         }
       }
     } catch (error) {
@@ -111,7 +105,7 @@ function Main() {
 
   const fetchTextData = async () => {
     try {
-      const response = await fetch(`${serverUrl}/get_text`);
+      const response = await fetch(`${serverUrl}/process_image`);
       if (response.ok) {
         const textData = await response.json();
         return textData;
@@ -125,20 +119,18 @@ function Main() {
     }
   };
 
-
-
   return (
     <div className="App">
-      <div className="navbar">
-        <div className="logo">
-          Object Detection
-        </div>
-      </div>
-      <div className='box'><video className="image" ref={videoRef} autoPlay /></div>
-      <div className="btncontainer">{viewButton ? <button className='button button2' onClick={handleStop}>Stop Frame</button>
-        :
-        <button className='button' onClick={handleStart}>Capture Frame</button>}
-      </div>
+      <h1>Camera App</h1>
+      <video ref={videoRef} autoPlay />
+      <button onClick={SpeechRecognition.startListening}>Start</button>
+      <button onClick={SpeechRecognition.stopListening}>Stop</button>
+
+      {viewButton ? (
+        <button onClick={handleStop}>Stop Frame</button>
+      ) : (
+        <button onClick={handleStart}>Capture Frame</button>
+      )}
     </div>
   );
 }
