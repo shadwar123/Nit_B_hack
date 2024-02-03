@@ -36,8 +36,7 @@ const SpeechToText = () => {
             <div className="container">
                 <h2>Speech to Text Converter</h2>
                 <br/>
-                <p>A React hook that converts speech from the microphone to text and makes it available to your React
-                    components.</p>
+                <p>A voice-activated tool, the Speech-to-Text Converter simplifies email writing. Speak, and it transcribes, offering a hands-free, efficient alternative.</p>
 
                 <div className="main-content" onClick={() =>  setTextToCopy(transcript)}>
                     {transcript}

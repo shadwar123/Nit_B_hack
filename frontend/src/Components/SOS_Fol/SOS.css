@@ -1,0 +1,95 @@
+/* styles.css */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background: rgb(255 255 255);
+}
+
+.container {
+  padding: 30px;
+  margin-top: 0px;
+}
+
+h1 {
+  font-size: 30px;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* Increase margin between labels */
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 5px; /* Slightly reduce padding */
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  background: rgb(17 166 131);
+  color: rgb(255 255 255);
+  border-radius: 6px;
+  padding: 16px 32px;
+  border: none;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin: auto;
+  display: flex;
+  position: relative;
+  margin-top: -80px;
+  cursor: pointer;
+}
+.btn-sos{
+  margin-top: 5px;
+}
+button:focus,
+button:hover {
+  background: rgb(42, 201, 164);
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Hide default focus styles on mouse interaction */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Hide visually but keep available to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Visually hidden but accessible text */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
