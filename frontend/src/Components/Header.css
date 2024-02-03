@@ -1,0 +1,22 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-pair {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px; /* Adjust the spacing between button pairs */
+  }
+  
+  .nav-button {
+    background-color: rgb(42, 201, 164);
+    color: white;
+    padding: 15px 30px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  

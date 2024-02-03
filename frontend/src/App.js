@@ -1,15 +1,34 @@
 
 import './App.css';
-import Main from './Components/Main';
 import SpeechToText from './Components/SpeechToText'
+import Navigation from './Components/Navigation';
+import ObjectDetection from './Components/ObjectDetection';
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Main from './Components/Main';
+import Header from './Components/Header';
+import SosMess from './Components/SosMess';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <Main/>
-      {/* <SpeechToText/> */}
+    <div className="app-container">
+
+      <nav className="navbar">
+        <div className="navbar-title">Blind Person Nav</div>
+      </nav>
+
+      <Header />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/sos-message" element={<SosMess/>} />
+        <Route path="/navigation" element={<Navigation/>} />
+        <Route path="/object-detection" element={<ObjectDetection/>} />
+        <Route path="/speech-to-text" element={<SpeechToText/>} />
+      </Routes>
+
+
     </div>
   );
-}
+};
 
 export default App;
