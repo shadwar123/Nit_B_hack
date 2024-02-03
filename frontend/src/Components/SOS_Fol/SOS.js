@@ -3,12 +3,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./SOS.css"
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 function App() {
+  const { speak } = useSpeechSynthesis();
   const [contactName1, setContactName1] = useState('Family (90099*****)');
   const [contactName2, setContactName2] = useState('Friends (94248*****)');
 
   const handleSendSOS = async () => {
+
+    speak({ text: 'Sos message', lang: 'en' });
     const fromPhoneNumber = '+16592373024';
     const sosMessage = 'Emergency! Need your help.';
   
