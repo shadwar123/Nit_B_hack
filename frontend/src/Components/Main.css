@@ -1,35 +1,47 @@
 #hero {
-    background-image: url(../../public/image4.jpg);
-    height: 40vh;
-    width: 120vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0px 100px;
-    background-position: top 25% right 0%;
-    background-size: cover;
-    align-items: flex-start;
-    justify-content: center;
-  }
-  #hero h1 {
-    color: #088178;
-  }
+  background-image: url(../../public/image4.jpg);
+  height: 40vh;
+  width: 120vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 100px;
+  background-position: top 25% right 0%;
+  background-size: cover;
+  align-items: flex-start;
+  justify-content: center;
+  animation: slideInHero 1s ease-in-out;
+}
 
-  #hero h4 {
-    padding-bottom: 15px;
+@keyframes slideInHero {
+  from {
+    transform: translateX(-100%);
   }
-
-  .hero-btn {
-
-    font-size: 20px;
-    font-weight: 700;
-    border: none;
-    background-image: url(../../public/button.png);
-    color: #088178;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    padding: 14px 80px 14px 65px;
-    cursor: pointer
+  to {
+    transform: translateX(0);
   }
+}
+
+#hero h2 {
+  color: #088178;;
+}
+
+#hero h3 {
+  padding-bottom: 15px;
+}
+
+.hero-btn {
+
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  background-image: url(../../public/button.png);
+  color: #088178;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  padding: 14px 80px 14px 65px;
+  cursor: pointer
+}
+
   a{
     text-decoration: none;
     margin-top: 10px;
@@ -38,4 +50,19 @@
 
   .banner_inside{
     margin-top: 60px;
+    animation: fadeIn 2s ease;
+    text-align: left;
+  }
+
+  .heading{
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }

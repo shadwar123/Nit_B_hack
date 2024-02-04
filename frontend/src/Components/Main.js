@@ -3,7 +3,7 @@ import './Main.css'
 function Main() {
   return (
     <div>
-      <h2>About Our Project</h2>
+      <h2 className='heading'>About Our Project</h2>
       <section id="hero">
 
       <div className='banner_inside'>

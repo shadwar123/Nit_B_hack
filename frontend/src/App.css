@@ -18,21 +18,43 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: rgb(223, 253, 244);
 }
 
 .navbar {
   background-color: #e3e6f3;
   padding: 10px;
-  width: 2000px;
+  width: 1550px;
   text-align: center;
   margin-left: 20px; /* Adjust the left margin as needed */
   margin-right: 20px; /* Adjust the right margin as needed */
+  animation: fadeIn 1s ease;
 }
-
 
 .navbar-title {
   font-size: 24px;
-  color: black;
+  color: #333;
+  transition: color 0.3s ease, font-size 0.3s ease, font-weight 0.3s ease;
+}
+
+.eye-icon {
+  font-size: 35px; 
+  margin-right: 8px;
+}
+
+.navbar-title:hover {
+  color: #088178; 
+  font-size: 32px; 
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .button-container {
@@ -42,16 +64,40 @@ body {
 }
 
 .nav-button {
-  background-color: rgb(42, 201, 164);
+  background-color: rgb(17 166 131);
   color: white;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  align-items: center;
+  justify-content: center;
   margin: 10px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 24px;
+  height: 100px;
+  width: 500px;
+  margin-top: 30px;
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.nav-button:focus,
+.nav-button:hover {
+background: rgb(42, 201, 164);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+transform: scale(1.05);
 }
 
 .component-container {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 /* 
 @media (prefers-reduced-motion: no-preference) {
