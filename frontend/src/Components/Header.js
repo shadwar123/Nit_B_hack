@@ -34,12 +34,12 @@ function Header() {
     return (
 
         <div className="button-container">
-            {/* <div className="button-pair">
+            <div className="button-pair">
                 <Link to="/chatbot" className="nav-button" style={{ fontSize: '30px', textAlign: 'center',paddingTop:'30px' }} onClick={chatbotclic}>
                 <FontAwesomeIcon icon={faComments} style={{ marginRight: '8px', color: 'white' }} />
                     Chat Bot</Link>
                 
-            </div> */}
+            </div>
             <div className="button-pair">
         <Link to="/sos-message" className="nav-button" style={{ fontSize: '30px', textAlign: 'center',paddingTop:'30px' }} onClick={SosMes}>
             <FontAwesomeIcon icon={faExclamationCircle} style={{ marginRight: '8px', color: 'white' }} />

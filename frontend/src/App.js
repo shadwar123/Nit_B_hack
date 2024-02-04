@@ -56,13 +56,10 @@ const App = () => {
       <span className="eye-icon" role="img" aria-label="Eye Icon">&#x1F441;</span>
         Blind Assistant</div>
       </nav>
-      <div>
-      {/* <p id="transcript">Transcript: {transcript}</p> */}
-      <button className="nav-button" style={{ width:'100%' }} onClick={SpeechRecognition.startListening}>Start Voice Assistant</button>
-      </div>
+      
 
 <div>
-  <button className="nav-button" style={{ width: '100vh', fontSize: '30px', textAlign: 'center', paddingTop: '20px' }}>
+  <button className="nav-button" onClick={SpeechRecognition.startListening} style={{ width: '100vh', fontSize: '30px', textAlign: 'center', paddingTop: '20px' }}>
     <FontAwesomeIcon icon={faMicrophone} style={{ marginRight: '8px', color: 'white' }} />
     Start Voice Assistant
   </button>
