@@ -73,9 +73,7 @@ Receive clear, audible feedback and instructions.(react -use -clipboard,react sp
 ![image]()
 
 ## Block Diagram
-  ![diagram-export-11-5-2023-10_19_08-AM]()
-
-## Presentation
+  
 
 ## Contributors ✨
 
