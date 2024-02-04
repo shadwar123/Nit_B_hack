@@ -25,10 +25,17 @@ function Header() {
     const SosMes = () => {
         speak({ text: 'Sos message', lang: 'en' });
     }
+    const chatbotclic = () => {
+        speak({ text: 'Ai Chat Bot', lang: 'en' });
+    }
 
     return (
 
         <div className="button-container">
+            <div className="button-pair">
+                <Link to="/chatbot" className="nav-button" style={{ fontSize: '24px' }} onClick={chatbotclic}>Chat Bot</Link>
+                <Link to="/speech-to-text" className="nav-button" style={{ fontSize: '24px' }}>Voice Assistant</Link>
+            </div>
             <div className="button-pair">
                 <Link to="/sos-message" className="nav-button" style={{ fontSize: '24px' }} onClick={SosMes}>SOS Messages&nbsp;&nbsp;&nbsp;&nbsp;</Link>
                 <Link to="/navigation" className="nav-button" style={{ fontSize: '24px' }} onClick={navigationClick}>Navigation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Link>
@@ -37,6 +44,7 @@ function Header() {
                 <Link to="/object-detection" className="nav-button" style={{ fontSize: '24px' }} onClick={objectDetectionClick}>Object Detection</Link>
                 <Link to="/speech-to-text" className="nav-button" style={{ fontSize: '24px' }} onClick={Speechtotext}>Speech To Text</Link>
             </div>
+
         </div>
 
     )

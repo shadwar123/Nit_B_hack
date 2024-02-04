@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Main from './Components/Main';
 import Header from './Components/Header';
 import Sosmess from './Components/SOS_Fol/SOS';
+import Chartbot from './Components/Chartbot';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/navigation" element={<Navigation/>} />
         <Route path="/object-detection" element={<ObjectDetection/>} />
         <Route path="/speech-to-text" element={<SpeechToText/>} />
+        <Route path="/chatbot" element={<Chartbot/>} />
       </Routes>
 
 
