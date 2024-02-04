@@ -68,12 +68,9 @@ Receive clear, audible feedback and instructions.(react -use -clipboard,react sp
 
 ## Application Preview 👀
 
-![image]()
-![image]()
-![image]()
+![image](![WhatsApp Image 2024-02-04 at 10 58 32 AM](https://github.com/shadwar123/Nit_B_hack/assets/110903269/cfab50eb-01dc-4638-9d25-a220e860a2df)
 
-## Block Diagram
-  
+
 
 ## Contributors ✨
 
