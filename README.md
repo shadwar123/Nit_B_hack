@@ -45,7 +45,9 @@ Be aware of your surroundings through AI-powered object identification.(YOLOv3 p
 
 * Text-to-Speech:📖
 Receive clear, audible feedback and instructions.(react -use -clipboard,react speech kit)
- 
+
+* Ai Chat Bot :👀 
+  With use of Google Gemini pro chat bot which can communicate with voice.(Google Gemini Pro ,Streamlit, PyCharm) 
 
 ## Technology Stack 🏁
 
