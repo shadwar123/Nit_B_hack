@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 function Navigation() {
-  // useEffect(() => {
-  //   window.open('https://colab.research.google.com/drive/14hrIAnOG2BNiK3hY7NhQUVmQoTqN5hb1#scrollTo=HEl-wMIcGO6d', '_blank');
-  // }, []);
+  useEffect(() => {
+    window.open('https://colab.research.google.com/drive/14hrIAnOG2BNiK3hY7NhQUVmQoTqN5hb1#scrollTo=HEl-wMIcGO6d', '_blank');
+  }, []);
 
   const { transcript, startListening } = useSpeechRecognition();
 

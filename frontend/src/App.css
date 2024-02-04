@@ -95,7 +95,9 @@ background: rgb(42, 201, 164);
 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 transform: scale(1.05);
 }
-
+.start-btn{
+  margin-left: 100px;
+}
 .component-container {
   margin-top: 30px;
 }
