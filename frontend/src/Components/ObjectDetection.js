@@ -147,7 +147,7 @@ function ObjectDetection() {
   return (
     <div className="App">
       <h2>Object Detection</h2>
-      <video ref={videoRef} autoPlay />
+      <video className='Obj' ref={videoRef} autoPlay />
       {/* <button onClick={SpeechRecognition.startListening}>Start</button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button> */}
 

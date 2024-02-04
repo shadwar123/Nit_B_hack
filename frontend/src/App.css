@@ -49,7 +49,9 @@ body {
   text-decoration: none;
   font-size: 16px;
 }
-
+.start-btn{
+  margin-left: 100px;
+}
 .component-container {
   margin-top: 20px;
 }

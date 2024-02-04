@@ -34,7 +34,7 @@ function Header() {
         <div className="button-container">
             <div className="button-pair">
                 <Link to="/chatbot" className="nav-button" style={{ fontSize: '24px' }} onClick={chatbotclic}>Chat Bot</Link>
-                <Link to="/speech-to-text" className="nav-button" style={{ fontSize: '24px' }}>Voice Assistant</Link>
+
             </div>
             <div className="button-pair">
                 <Link to="/sos-message" className="nav-button" style={{ fontSize: '24px' }} onClick={SosMes}>SOS Messages&nbsp;&nbsp;&nbsp;&nbsp;</Link>
